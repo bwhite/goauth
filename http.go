@@ -123,19 +123,25 @@ func send(req *http.Request, timeout int64) (resp *http.Response, err error) {
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println("0")
 
 	if timeout > 0 {
 		conn.SetReadDeadline(time.Now().Add(time.Duration(timeout)))
 	}
-
+	fmt.Println("1")
 	err = req.Write(conn)
+	fmt.Println("2")
+
 	if err != nil {
 		conn.Close()
 		return nil, err
 	}
-
+	fmt.Println("3")
 	reader := bufio.NewReader(conn)
+	fmt.Println("4")
 	resp, err = http.ReadResponse(reader, req)
+	fmt.Println("5")
+
 	if err != nil {
 		conn.Close()
 		return nil, err
