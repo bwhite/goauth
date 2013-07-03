@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"crypto/tls"
 	"io"
+	"fmt"
 	"net"
 	"net/http"
 	"strings"
